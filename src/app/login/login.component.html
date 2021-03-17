@@ -1,0 +1,16 @@
+
+ <link rel="stylesheet" href="login.component.css">
+ <h1> Bank Login Form </h1><br>{{msg}}{{name}}
+<form>
+    <div class="container"> 
+        <label>Username : </label> 
+        <input type="text" placeholder="Enter Username" (change)="getuname($event)" name="username" required>
+        <label>Password : </label> 
+        <input type="password" placeholder="Enter Password" (change)="getpwd($event)" name="password" required>
+        <button type="submit" (click)="login()">Login</button> 
+        <input type="checkbox" checked="checked"> Remember me 
+        <button type="button" class="cancelbtn"> Cancel</button> 
+        Forgot <a href="#"> password? </a>&nbsp;&nbsp;&nbsp;
+        <a href="#"> Register </a> 
+    </div> 
+</form> 
