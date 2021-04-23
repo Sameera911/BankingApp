@@ -38,3 +38,8 @@ Body {
           padding: 25px; 
           background-color: lightblue;
       } 
+
+      .valerror
+      {
+          color: red;
+      }

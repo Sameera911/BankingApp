@@ -7,11 +7,12 @@ const routes: Routes = [
   {
     path:'registration',component:RegistrationComponent
   },
-  {
-    path:'',component:LoginComponent
-  },
+  
   {
     path:'dashboard',component:DashboardComponent
+  },
+  {
+    path:'',component:LoginComponent
   }
 ];
 

@@ -1,18 +1,49 @@
 <link rel="stylesheet" href="dashboard.component.css">
- <h1> Registration Form </h1><br>
-<form>
-    <div class="container">
+<h3>Welcome&nbsp;{{name}}</h3>
+
+<app-animationdemo></app-animationdemo>
+
+
+ <h1 appHighlight><u> Deposit Amount</u> </h1><br>
+<form [formGroup]="depositform" (ngSubmit)="deposit()"  >
+    <div class="container" [ngClass]="acno? 'grey' :''">
         <label>Account Number : </label> 
-        <input type="text" placeholder="Enter Account number"  name="Accno" required>
-       
+        <input type="text" placeholder="Enter Account number" formControlName="accno"  name="Accno" required>
+        <div *ngIf="(this.depositform.get('accno')?.touched||this.depositform.get('accno')?.dirty)&&this.depositform.get('accno')?.errors" class="valerror form-text">Invalid Account Number</div>
         <label>Password : </label> 
-        <input type="password" placeholder="Enter Password"  name="password" required>
+        <input type="password" placeholder="Enter Password" formControlName="password" name="password" required>
+        <div *ngIf="(this.depositform.get('password')?.touched||this.depositform.get('password')?.dirty)&&this.depositform.get('password')?.errors" class="valerror form-text">Invalid Account Number</div>
         <label>Enter Amount : </label> 
-        <input type="text" placeholder="Enter Amount"  name="Amt" required>
-        <button type="submit" >Deposit</button> &nbsp;&nbsp; <button type="submit" >Withdraw</button> <br>
+        <input type="text" placeholder="Enter Amount" formControlName="amt" name="Amt" required>
+        <div *ngIf="(this.depositform.get('amt')?.touched||this.depositform.get('amt')?.dirty)&&this.depositform.get('amt')?.errors" class="valerror form-text">Invalid Account Number</div>
+        <button type="submit" >Deposit</button><br>
         <input type="checkbox" checked="checked"> Remember me 
         <button type="button" onclick="register()" class="cancelbtn"> Cancel</button> 
         
         
     </div> 
+</form> <hr><hr>
+<h1 appHighlight><u> Withdraw</u></h1><br>
+<form [formGroup]="withdrawform" (ngSubmit)="withdraw()">
+    <div class="container" [ngClass]="acno? 'grey' :''">
+        <label>Account Number : </label> 
+        <input type="text" placeholder="Enter Account number" formControlName="accno" name="Accno" required>
+        <div *ngIf="(this.withdrawform.get('accno')?.touched||this.withdrawform.get('accno')?.dirty)&&this.withdrawform.get('accno')?.errors" class="valerror form-text">Invalid Account Number</div>
+        <label>Password : </label> 
+        <input type="password" placeholder="Enter Password" formControlName="password" name="password" required>
+        <div *ngIf="(this.withdrawform.get('password')?.touched||this.withdrawform.get('password')?.dirty)&&this.withdrawform.get('password')?.errors" class="valerror form-text">Invalid Account Number</div>
+        <label>Enter Amount : </label> 
+        <input type="text" placeholder="Enter Amount" formControlName="amt" name="Amt" required>
+        <div *ngIf="(this.withdrawform.get('amt')?.touched||this.withdrawform.get('amt')?.dirty)&&this.withdrawform.get('amt')?.errors" class="valerror form-text">Invalid Account Number</div>
+        <button type="submit" >Withdraw</button> <br>
+        <input type="checkbox" checked="checked"> Remember me 
+        <button type="button" onclick="register()" class="cancelbtn"> Cancel</button> 
+        
+        
+    </div> 
+    <p>Login Date:{{llogin}}</p>
+    <p>Login Date:{{llogin | date}}</p>
+    <p>Login Date:{{llogin | date:'medium' | uppercase}}</p>
+    <app-deleteconfirmation  (onDelete)="onDelete($event)" (onCancel)="onCancel()" [item]="acno" > </app-deleteconfirmation>
+    <button type="submit" class="btn btn-primary" (click)="deleteAcc()">Delete Account</button>
 </form> 

@@ -1,0 +1,7 @@
+<div [@openClose]="isOpen? 'open' : 'close'">
+    <h1>I am {{isOpen? "Open" : "Close"}}</h1>
+
+    <h1>Today is {{today | date:'fullDate'}}</h1>
+    
+</div>
+<button (click)="toggle()">Toggle</button>

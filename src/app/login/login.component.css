@@ -14,6 +14,10 @@ Body {
    form { 
           border: 3px solid #f1f1f1; 
       } 
+      .valerror
+      {
+          color: red;
+      }
    input[type=text], input[type=password] { 
           width: 100%; 
           margin: 8px 0;

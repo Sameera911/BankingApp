@@ -4,14 +4,13 @@ Body {
   }
   button { 
          background-color: #4CAF50; 
-         width: 150px;
+         width: 100%;
           color: rgb(255, 255, 255); 
           padding: 15px; 
           margin: 10px 0px; 
           border: none; 
           cursor: pointer; 
-            margin-left: 120px;
-           } 
+                   } 
    form { 
           border: 3px solid #f1f1f1; 
       } 
@@ -39,3 +38,13 @@ Body {
           padding: 25px; 
           background-color: lightblue;
       } 
+      .valerror
+      {
+          color: red;
+      }
+
+      .grey
+      {
+          background-color: rgb(117, 114, 114);
+          opacity: 2;
+      }

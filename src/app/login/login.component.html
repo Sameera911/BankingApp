@@ -1,16 +1,20 @@
 
  <link rel="stylesheet" href="login.component.css">
- <h1> Bank Login Form </h1><br>{{msg}}{{name}}
-<form>
+ <h1> Bank Login Form </h1><br>
+ <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="container"> 
-        <label>Username : </label> 
-        <input type="text" placeholder="Enter Username" (change)="getuname($event)" name="username" required>
+        <label>Account Number : </label> 
+        <input type="text" placeholder="Enter account number" formControlName="accno" name="accno"  required>
+        <div *ngIf="(this.loginForm.get('accno')?.touched||this.loginForm.get('accno')?.dirty)&&this.loginForm.get('accno')?.errors" class="valerror form-text">Invalid Account Number</div>
+
         <label>Password : </label> 
-        <input type="password" placeholder="Enter Password" (change)="getpwd($event)" name="password" required>
-        <button type="submit" (click)="login()">Login</button> 
+        <input type="password" placeholder="Enter Password" formControlName="upw"  name="password" required>
+        <div *ngIf="(this.loginForm.get('upw')?.touched||this.loginForm.get('upw')?.dirty)&&this.loginForm.get('upw')?.errors" class="valerror form-text">Invalid Account Number</div>
+        
+        <button type="submit" >Login</button> 
         <input type="checkbox" checked="checked"> Remember me 
         <button type="button" class="cancelbtn"> Cancel</button> 
         Forgot <a href="#"> password? </a>&nbsp;&nbsp;&nbsp;
-        <a href="#"> Register </a> 
+        <a routerLink="registration"> Register </a> 
     </div> 
 </form> 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import {Router,Routes} from '@angular/router';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-login',
@@ -7,37 +10,68 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  accountDetails =
-  {
-      1000: { acno: 1000, name: "userone", balance: 5000, password: "user1" },
-      1001: { acno: 1001, name: "usertwo", balance: 3500, password: "user2" },
-      1002: { acno: 1002, name: "userthree", balance: 6000, password: "user3" },
-      1003: { acno: 1003, name: "userfour", balance: 7000, password: "user4" },
-      1004: { acno: 1004, name: "userfive", balance: 5200, password: "user5" },
-  }
+  
 
-  constructor() { }
+  constructor(private router:Router,private dataService:DataService, private fb:FormBuilder) { }
 
-name="";
-pw="";
-msg="hello ";
+  accno=" ";
+  upw="";
+ 
+  loginForm=this.fb.group(
+    {
+    accno:['',[Validators.required,Validators.minLength(4),Validators.maxLength(4),Validators.pattern('[0-9]*')]],
+    upw:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
+    }
+  );
 
   ngOnInit(): void {
   }
-  getuname(event:any)
-  {
-    this.name=event.target.value;
-    console.log(this.name);
+  // getuname(event:any)
+  // {
+    // html...........(change)="getuname($event)"
+    //this.accno=event.target.value;
+    //console.log(this.name);
     
-  }
-  getpwd(event:any)
-  {
-    this.pw=event.target.value;
-    console.log(this.pw);
+ // }
+  // getpwd(event:any)
+  // {
     
+    //.............(change)="getpwd($event)"
+    // this.upw=event.target.value;
+    // //console.log(this.pw);
+    
+  //}
+  login()
+  {
+   //alert("hii");
+    
+      if(this.loginForm.valid)
+      {
+            
+          var acno = this.loginForm.value.accno;
+          var upwd = this.loginForm.value.upw;
+          this.dataService.login(acno,upwd)
+          .subscribe((data:any)=>{
+            if(data){
+              alert(data.message);
+              localStorage.setItem("name",data.name);
+              localStorage.setItem("acno",data.acno);
+              this.router.navigateByUrl('dashboard');
+            }
+          },(data)=>{
+            alert(data.error.message);
+          })
+          // var acno = a.value;
+          // var upwd = p.value;
+        //  if(result)
+        //  {
+        //    this.router.navigateByUrl("dashboard");
+        //  }
+        }
+        else
+        {
+          alert("Invalid Forms");
+        }
   }
-login()
-{
-  alert("hello");
-}
+
 }
